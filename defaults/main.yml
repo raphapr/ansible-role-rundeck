@@ -91,3 +91,8 @@ rd_ldap:
     timeoutread: 10000
     timeoutconnect: 20000
     nestedgroups: "false"
+
+
+## Mysql
+mysql_root_user: root
+mysql_root_password: ''
