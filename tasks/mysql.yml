@@ -14,6 +14,8 @@
 - name: modify mysql database
   mysql_db:
     login_host: "{{ rd_mysql_host }}"
+    login_user: "{{ mysql_root_user |d(omit) }}"
+    login_password: "{{ mysql_root_password |d(omit) }}"
     name: "{{ rd_mysql_database }}"
     state: present
 
