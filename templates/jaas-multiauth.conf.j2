@@ -22,7 +22,8 @@ multiauth {
       timeoutRead="{{ rd_ldap.timeoutread }}"
       timeoutConnect="{{ rd_ldap.timeoutconnect }}"
       nestedGroups="{{ rd_ldap.nestedgroups }}";
-    org.eclipse.jetty.plus.jaas.spi.PropertyFileLoginModule required
-      debug="true"
-      file="/etc/rundeck/realm.properties";
+
+    org.eclipse.jetty.jaas.spi.PropertyFileLoginModule required
+     debug="true"
+     file="/etc/rundeck/realm.properties";
 };

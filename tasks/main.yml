@@ -1,23 +1,27 @@
 - include: mysql.yml
 - include: nginx.yml
 
-- name: modify repository
+- name: Add rundeck repository
   apt_repository:
-    repo: 'deb http://dl.bintray.com/rundeck/rundeck-deb /'
+    repo: 'deb https://rundeck.bintray.com/rundeck-deb /'
     state: present
+    filename: rundeck
 
-- name: install
+- name: Install Rundeck Server and cli
   apt:
-    name: "rundeck={{ rundeck_version }}*"
+    name: "{{ item }}"
     state: present
     force: yes
+  with_items:
+    - rundeck={{ rundeck_version }}*
+    - rundeck-cli
 
 - name: remove upstart scripts
   file:
     path: /etc/init/rundeckd.conf
     state: absent
 
-- name: download plugins
+- name: Download plugins
   get_url:
     url: "{{ item }}"
     dest: "/var/lib/rundeck/libext/{{ item.split('/')[-1] }}"
@@ -32,11 +36,6 @@
   with_items: "{{ rundeck_plugins_removed }}"
   notify: restart rundeckd
 
-- name: Remove default properties file
-  file:
-    path: /etc/rundeck/rundeck-config.properties
-    state: absent
-
 - name: modify config
   template:
     src: "{{ item }}.j2"
@@ -45,23 +44,34 @@
     group: rundeck
     mode: 0640
   with_items:
-    - profile
     - framework.properties
-    - rundeck-config.groovy
-    - realm.properties
+    - rundeck-config.properties
     - log4j.properties
   notify: restart rundeckd
   tags:
     - rundeck-login-module
 
-- name: modify login module config
+- name: Add login module config
   template:
     src: "jaas-{{ rd_login_module }}.conf.j2"
-    dest: "/etc/rundeck/jaas-loginmodule.conf"
+    dest: "/etc/rundeck/jaas-{{ rd_login_module }}.conf"
     owner: rundeck
     group: rundeck
     mode: 0640
   notify: restart rundeckd
+  when: rd_login_module is defined
+  tags:
+    - rundeck-login-module
+
+- name: export login module config
+  template:
+    src: "rundeckd.j2"
+    dest: "/etc/default/rundeckd"
+    owner: rundeck
+    group: rundeck
+    mode: 0640
+  notify: restart rundeckd
+  when: rd_login_module is defined
   tags:
     - rundeck-login-module
 
@@ -76,7 +86,8 @@
     - admin.aclpolicy
     - rundeckadmin.aclpolicy
     - apitoken.aclpolicy
-    - hipchat_default.ftl
+  tags:
+    - rundeck-aclpolicy
 
 - name: put limits.d file
   template:
@@ -85,15 +96,6 @@
     owner: root
     group: root
     mode: 0644
-
-- name: modify name of default user role
-  replace:
-    dest: /var/lib/rundeck/exp/webapp/WEB-INF/web.xml
-    regexp: "<role-name>user</role-name>"
-    replace: "<role-name>{{ rd_default_group_name }}</role-name>"
-    backup: yes
-  when: rd_default_group_name is defined
-  notify: restart rundeckd
 
 - name: modify directory permission
   file:
@@ -114,14 +116,7 @@
     name: rundeckd
     state: started
     enabled: yes
-
-- name: set session timeout
-  replace:
-    dest: "{{ rundeck_webapp_webinf_path }}/web.xml"
-    regexp: '\<session\-timeout\>[0-9]+\<\/session\-timeout\>'
-    replace: "<session-timeout>{{ rundeck_session_timeout }}</session-timeout>"
-  notify: restart rundeckd
-  tags: rundeck-session-timeout
+    sleep: 30
 
 - include: projects.yml
-  tags: rundeck-projects
+  tags: rundeck-projects    

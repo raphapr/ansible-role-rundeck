@@ -1,13 +1,14 @@
 ---
-- name: Run rd-project if project directory not exists in file system
-  command: "/usr/bin/rd-project -p {{item}} -a create -v"
+
+- name: Run rd create project if project directory not exists in file system
+  command: "/usr/bin/rd projects create -p {{item}} --file /etc/rundeck/{{ item }}.properties"
   args:
     chdir: /var/rundeck/
     creates: "/var/rundeck/projects/{{item}}"
   environment:
-    RUNDECK_URL: "{{framework_server_url}}"
-    RUNDECK_USER: "{{framework_server_username}}"
-    RUNDECK_PASS: "{{admin_password}}"
+    RD_URL : "http://localhost:4440"
+    RD_USER: "{{ framework_server_username }}"
+    RD_PASSWORD: "{{ framework_server_password }}"
   with_items: "{{ rd_create_projects }}"
   ignore_errors: true
 

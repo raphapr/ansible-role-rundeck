@@ -1,9 +1,10 @@
-rundeck_version: "2.6.2"
+rundeck_version: "3.1.2"
 
 rundeck_plugins:
-  - "https://github.com/rundeck-plugins/rundeck-ec2-nodes-plugin/releases/download/v1.5.1/rundeck-ec2-nodes-plugin-1.5.1.jar"
-  - "https://github.com/rundeck-plugins/rundeck-s3-log-plugin/releases/download/v1.0.0/rundeck-s3-log-plugin-1.0.0.jar"
-  - "https://github.com/higanworks/rundeck-slack-incoming-webhook-plugin/releases/download/v0.3.dev/rundeck-slack-incoming-webhook-plugin-0.3.jar"
+  - "https://github.com/rundeck-plugins/rundeck-ec2-nodes-plugin/releases/download/v1.5.9/rundeck-ec2-nodes-plugin-1.5.9.jar"
+  - "https://github.com/rundeck-plugins/rundeck-s3-log-plugin/releases/download/v1.0.6/rundeck-s3-log-plugin-1.0.6.jar"
+  - "https://github.com/rundeck-plugins/slack-incoming-webhook-plugin/releases/download/v1.2.4/slack-incoming-webhook-plugin-1.2.4.jar"
+  - "https://github.com/Batix/rundeck-ansible-plugin/releases/download/3.0.1/ansible-plugin-3.0.1.jar"
 
 rundeck_plugins_removed: []
 
@@ -28,8 +29,6 @@ rundeck_clusterMode_enabled: "true"
 # webapp WEB-INF path
 rundeck_webapp_webinf_path: /var/lib/rundeck/exp/webapp/WEB-INF
 
-# session config
-rundeck_session_timeout: 30
 
 # MySQL
 rd_mysql_host: localhost
@@ -56,12 +55,12 @@ rd_create_projects: []
 # Users list
 rd_create_users: []
 
-# Hipchat configuration
-hipchat_token: null
-hipchat_template: /etc/rundeck/hipchat_default.ftl
-
 # Rundeck TMPDIR
 rundeck_tmpdir: /tmp/rundeck
+
+# JVM parameters
+rundeck_jvm_settings: "-Xmx256m -Xms256m -XX:MaxMetaspaceSize=256m -server"
+rundeck_jvm_opts: "-Drundeck.jaaslogin=true -Djava.security.auth.login.config=/etc/rundeck/jaas-multiauth.conf -Dloginmodule.name=multiauth"
 
 # values: loginmodule (default) or ldap
 rd_login_module: loginmodule
