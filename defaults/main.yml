@@ -59,7 +59,7 @@ rd_create_users: []
 rundeck_tmpdir: /tmp/rundeck
 
 # JVM parameters
-rundeck_jvm_settings: "-Xmx{{ (ansible_memtotal_mb * 0.5) }}m -Xms{{ (ansible_memtotal_mb * 0.5) }}m -XX:MaxMetaspaceSize={{ (ansible_memtotal_mb * 0.1) }}m -server"
+rundeck_jvm_settings: "-Xmx{{ (ansible_memtotal_mb * 0.5)|int }}m -Xms{{ (ansible_memtotal_mb * 0.5)|int }}m -XX:MaxMetaspaceSize={{ (ansible_memtotal_mb * 0.1)|int }}m -server"
 rundeck_jvm_opts: "-Drundeck.jaaslogin=true -Djava.security.auth.login.config=/etc/rundeck/jaas-multiauth.conf -Dloginmodule.name=multiauth"
 
 # values: loginmodule (default) or ldap
