@@ -31,10 +31,9 @@ dataSource.driverClassName=com.mysql.jdbc.Driver
 grails.mail.host = {{ rd_email_host }}
 grails.mail.port = {{ rd_email_port }}
 grails.mail.default.from = {{ rd_email_from }}
-grails.mail.props = ["mail.smtp.auth":"true"]
 grails.mail.username = {{ rd_email_user }}
 grails.mail.password = {{ rd_email_password }}
-grails.mail.props += ["mail.smtp.starttls.enable":"true", "mail.smtp.port": {{ rd_email_port }}]
+grails.mail.props = ["mail.smtp.auth":"true", "mail.smtp.starttls.enable":"true", "mail.smtp.port": {{ rd_email_port }}]
 
 # Enables DB for Project configuration storage
 rundeck.projectsStorageType = db
