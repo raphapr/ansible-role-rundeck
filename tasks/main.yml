@@ -111,6 +111,11 @@
     state: directory
     owner: rundeck
 
+- include: overrides.yml
+  when: rundeck_overrides | length > 0
+  notify: restart rundeckd
+  tags: rundeck-overrides
+
 - name: rundeckd is enabled
   service:
     name: rundeckd

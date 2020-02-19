@@ -95,3 +95,8 @@ rd_ldap:
 ## Mysql
 mysql_root_user: root
 mysql_root_password: ''
+
+# Overrides
+rundeck_defaults_path: /etc/default/rundeckd
+rundeck_overrides_dir: /overrides
+rundeck_overrides: []
