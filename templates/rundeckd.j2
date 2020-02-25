@@ -8,3 +8,4 @@ RDECK_JVM_SETTINGS="${RDECK_JVM_SETTINGS:- {{ rundeck_jvm_settings }} }"
 RDECK_JVM_OPTS="-Drundeck.jaaslogin=true \
        -Djava.security.auth.login.config=/etc/rundeck/jaas-multiauth.conf \
        -Dloginmodule.name=multiauth"
+export PATH={{ rundeck_overrides_dir }}:$PATH

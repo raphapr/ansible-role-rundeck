@@ -19,8 +19,3 @@
     group: root
     mode: 0755
   with_items: "{{ rundeck_overrides }}"
-
-- name: Modify rundeck jobs PATH env var
-  lineinfile:
-    path: "{{ rundeck_defaults_path }}"
-    line: "export PATH={{ rundeck_overrides_dir }}:$PATH"
