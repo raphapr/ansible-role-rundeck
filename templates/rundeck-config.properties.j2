@@ -35,6 +35,11 @@ grails.mail.username = {{ rd_email_user }}
 grails.mail.password = {{ rd_email_password }}
 grails.mail.props = ["mail.smtp.auth":"true", "mail.smtp.starttls.enable":"true", "mail.smtp.port": {{ rd_email_port }}]
 
+# Grails configuration
+
+grails.controllers.upload.maxFileSize = {{ rundeck_upload_max_size }}
+grails.controllers.upload.maxRequestSize = {{ rundeck_upload_max_size }}
+
 # Enables DB for Project configuration storage
 rundeck.projectsStorageType = db
 

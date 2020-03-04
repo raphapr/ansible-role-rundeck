@@ -1,5 +1,9 @@
+---
 - include: mysql.yml
+  tags: rundeck-mysql
+
 - include: nginx.yml
+  tags: rundeck-nginx
 
 - name: Add rundeck repository
   apt_repository:
@@ -50,6 +54,7 @@
   notify: restart rundeckd
   tags:
     - rundeck-login-module
+    - rundeck-properties
 
 - name: Add login module config
   template:
