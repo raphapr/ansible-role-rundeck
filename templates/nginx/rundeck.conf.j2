@@ -17,7 +17,7 @@ server {
 
     reset_timedout_connection       on;
     large_client_header_buffers     1024 128k;
-    client_max_body_size            {{ (rundeck_upload_max_size / 1024) | int }}M;
+    client_max_body_size            {{ (rundeck_upload_max_size | int / 1024 / 1024 )| int }}M;
     client_body_buffer_size         4M;
     client_header_buffer_size       128k;
     client_body_in_single_buffer    on;
