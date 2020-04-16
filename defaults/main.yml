@@ -29,6 +29,9 @@ rundeck_clusterMode_enabled: "true"
 # upload max size in bytes configured both in nginx / grails
 rundeck_upload_max_size: 4096
 
+# Set to 0 if it shouldn't expire.
+rundeck_token_max_duration: 0
+
 # webapp WEB-INF path
 rundeck_webapp_webinf_path: /var/lib/rundeck/exp/webapp/WEB-INF
 
