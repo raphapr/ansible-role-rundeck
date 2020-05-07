@@ -105,3 +105,5 @@ mysql_root_password: ''
 rundeck_defaults_path: /etc/default/rundeckd
 rundeck_overrides_dir: /overrides
 rundeck_overrides: []
+
+rundeck_thread_count: 10
