@@ -53,3 +53,6 @@ rundeck.config.storage.converter."1".config.password = {{jasypt_encryption_secre
 # Enable DB for Key Storage
 rundeck.storage.provider."1".type = db
 rundeck.storage.provider."1".path = /keys
+
+# The maximum number of threads used by Rundeck for concurrent jobs
+quartz.threadPool.threadCount = {{ rundeck_thread_count }}
