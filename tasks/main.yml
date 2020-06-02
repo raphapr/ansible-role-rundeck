@@ -25,6 +25,9 @@
     path: /etc/init/rundeckd.conf
     state: absent
 
+- debug: var=rundeck_plugins
+  tags: plugins
+
 - name: Download plugins
   get_url:
     url: "{{ item }}"
@@ -32,6 +35,7 @@
     mode: 0644
   with_items: "{{ rundeck_plugins }}"
   notify: restart rundeckd
+  tags: plugins
 
 - name: remove plugins
   file:
@@ -39,6 +43,7 @@
     state: absent
   with_items: "{{ rundeck_plugins_removed }}"
   notify: restart rundeckd
+  tags: plugins
 
 - name: modify config
   template:
@@ -55,6 +60,7 @@
   tags:
     - rundeck-login-module
     - rundeck-properties
+    - plugins
 
 - name: Add login module config
   template:
@@ -129,4 +135,4 @@
     sleep: 30
 
 - include: projects.yml
-  tags: rundeck-projects    
+  tags: rundeck-projects
