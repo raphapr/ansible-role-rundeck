@@ -107,3 +107,5 @@ rundeck_overrides_dir: /overrides
 rundeck_overrides: []
 
 rundeck_thread_count: 10
+
+rundeck_rotate_retention: 30
