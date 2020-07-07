@@ -56,3 +56,6 @@ rundeck.storage.provider."1".path = /keys
 
 # The maximum number of threads used by Rundeck for concurrent jobs
 quartz.threadPool.threadCount = {{ rundeck_thread_count }}
+
+# Upload logs to S3
+rundeck.execution.logs.fileStoragePlugin=org.rundeck.amazon-s3

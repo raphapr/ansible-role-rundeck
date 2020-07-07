@@ -2,7 +2,7 @@ rundeck_version: "3.1.2"
 
 rundeck_plugins:
   - "https://github.com/rundeck-plugins/rundeck-ec2-nodes-plugin/releases/download/v1.5.9/rundeck-ec2-nodes-plugin-1.5.9.jar"
-  - "https://github.com/rundeck-plugins/rundeck-s3-log-plugin/releases/download/v1.0.6/rundeck-s3-log-plugin-1.0.6.jar"
+  - "https://github.com/rundeck-plugins/rundeck-s3-log-plugin/releases/download/v1.0.11/rundeck-s3-log-plugin-1.0.11.jar"
   - "https://github.com/rundeck-plugins/slack-incoming-webhook-plugin/releases/download/v1.2.4/slack-incoming-webhook-plugin-1.2.4.jar"
   - "https://github.com/Batix/rundeck-ansible-plugin/releases/download/3.0.1/ansible-plugin-3.0.1.jar"
 
