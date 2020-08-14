@@ -127,12 +127,12 @@
   notify: restart rundeckd
   tags: rundeck-overrides
 
-- name: rundeckd is enabled
-  service:
+- name: enable service httpd and ensure it is not masked
+  systemd:
     name: rundeckd
-    state: started
     enabled: yes
-    sleep: 30
+    state: started
+    daemon_reload: yes
 
 - include: projects.yml
   tags: rundeck-projects
