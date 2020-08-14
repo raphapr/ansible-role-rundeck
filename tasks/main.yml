@@ -127,7 +127,7 @@
   notify: restart rundeckd
   tags: rundeck-overrides
 
-- name: enable service httpd and ensure it is not masked
+- name: enable rundeckd and ensure it is started
   systemd:
     name: rundeckd
     enabled: yes
