@@ -9,7 +9,8 @@ Group=rundeck
 Type=simple
 Restart=on-failure
 WorkingDirectory={{ trickster_path }}
-ExecStart=/bin/sh -c '. /etc/rundeck/profile ; $JAVA_HOME/bin/java $RDECK_JVM -cp $BOOTSTRAP_CP com.dtolabs.rundeck.RunServer /var/lib/rundeck $RDECK_HTTP_PORT > /var/log/rundeck/service.log 2>&1'LimitNOFILE=1048576
+ExecStart=/bin/sh -c '. /etc/rundeck/profile ; $JAVA_HOME/bin/java $RDECK_JVM -cp $BOOTSTRAP_CP com.dtolabs.rundeck.RunServer /var/lib/rundeck $RDECK_HTTP_PORT > /var/log/rundeck/service.log 2>&1'
+LimitNOFILE=1048576
 TimeoutStopSec=20
 UMask=0027
 
