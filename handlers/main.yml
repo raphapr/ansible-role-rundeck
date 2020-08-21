@@ -3,6 +3,10 @@
     name: rundeckd
     state: restarted
 
+- name: reload systemd
+  systemd:
+    daemon_reload: true
+
 - name: restart nginx
   service: name=nginx state=restarted
 

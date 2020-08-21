@@ -127,12 +127,24 @@
   notify: restart rundeckd
   tags: rundeck-overrides
 
-- name: rundeckd is enabled
-  service:
+- name: "Rundeck | copy rundeck systemd file"
+  template:
+    src: "rundeck.service.j2"
+    dest: "/etc/systemd/system/rundeck.service"
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - reload systemd
+    - restart rundeckd
+  when: ansible_service_mgr == "systemd"
+
+- name: enable rundeckd and ensure it is started
+  systemd:
     name: rundeckd
-    state: started
     enabled: yes
-    sleep: 30
+    state: started
+    daemon_reload: yes
 
 - include: projects.yml
   tags: rundeck-projects
