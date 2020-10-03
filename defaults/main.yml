@@ -8,6 +8,8 @@ rundeck_plugins:
 
 rundeck_plugins_removed: []
 
+rundeck_apt_key: 379CE192D401AB61
+
 # framework.properties
 framework_server_port: 4440
 framework_server_url: "http://localhost:4440"
@@ -37,6 +39,7 @@ rundeck_token_max_duration: 0
 rundeck_webapp_webinf_path: /var/lib/rundeck/exp/webapp/WEB-INF
 
 # MySQL
+rd_mysql_enabled: True
 rd_mysql_host: localhost
 rd_mysql_database: rundeck
 rd_mysql_user: rundeck
@@ -66,7 +69,7 @@ rundeck_tmpdir: /tmp/rundeck
 
 # JVM parameters
 rundeck_jvm_settings: "-Xmx{{ (ansible_memtotal_mb * 0.5)|int }}m -Xms{{ (ansible_memtotal_mb * 0.5)|int }}m -XX:MaxMetaspaceSize={{ (ansible_memtotal_mb * 0.1)|int }}m -server"
-rundeck_jvm_opts: "-Drundeck.jaaslogin=true -Djava.security.auth.login.config=/etc/rundeck/jaas-multiauth.conf -Dloginmodule.name=multiauth"
+rundeck_jvm_opts: "-Drundeck.jaaslogin=true -Djava.security.auth.login.config=/etc/rundeck/jaas-{{ rd_login_module }}.conf -Dloginmodule.name={{ rd_login_module }}"
 
 # values: loginmodule (default) or ldap
 rd_login_module: loginmodule

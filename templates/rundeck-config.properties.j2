@@ -19,13 +19,13 @@ rundeck.security.syncLdapUser=true
 # Define the token time expiration
 rundeck.api.tokens.duration.max={{ rundeck_token_max_duration }}
 
-# MySQL DB storage
+# Postgresql DB storage
 
 dataSource.dbCreate = {{ dataSource_dbCreate }}
-dataSource.url = jdbc:mysql://{{ rd_mysql_host }}/{{ rd_mysql_database }}?autoReconnect=true&useSSL=false
-dataSource.username = {{ rd_mysql_user }}
-dataSource.password = {{ rd_mysql_password }}
-dataSource.driverClassName=com.mysql.jdbc.Driver
+dataSource.url = jdbc:postgresql://{{ rd_pg_host }}/{{ rd_pg_database }}?autoReconnect=true&useSSL=false
+dataSource.username = {{ rd_pg_user }}
+dataSource.password = {{ rd_pg_password }}
+dataSource.driverClassName=org.postgresql.Driver
 
 
 # Email Settings

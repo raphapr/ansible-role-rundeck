@@ -6,6 +6,22 @@
 - include: nginx.yml
   tags: rundeck-nginx
 
+
+
+
+- name: nvme | ensure /usr/local/bin directory
+  file:
+    path: /var/rundeck
+    state: directory
+    owner: rundeck
+    group: rundeck
+    mode: 0755
+
+- name: Add apt signing key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ rundeck_apt_key }}"
+
 - name: Add rundeck repository
   apt_repository:
     repo: 'deb https://rundeck.bintray.com/rundeck-deb /'
