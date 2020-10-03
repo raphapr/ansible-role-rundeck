@@ -18,6 +18,7 @@ framework_ssh_keypath: /var/lib/rundeck/.ssh/id_rsa
 framework_ssh_user: rundeck
 framework_ssh_timeout: 0
 
+rundeck_s3_enabled: False
 rundeck_s3_bucket: ""
 rundeck_s3_path: "logs/${job.project}/${job.id}/${job.execid}.log"
 rundeck_s3_region: ap-northeast-1
