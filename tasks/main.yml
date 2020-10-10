@@ -78,8 +78,8 @@
 
 - name: Add login module config
   template:
-    src: "jaas-{{ rd_login_module }}.conf.j2"
-    dest: "/etc/rundeck/jaas-{{ rd_login_module }}.conf"
+    src: jaas-propertyfile.conf.j2
+    dest: /etc/rundeck/jaas-loginmodule.conf
     owner: rundeck
     group: rundeck
     mode: 0640
