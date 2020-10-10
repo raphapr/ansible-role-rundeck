@@ -6,10 +6,7 @@
 - include: nginx.yml
   tags: rundeck-nginx
 
-
-
-
-- name: nvme | ensure /usr/local/bin directory
+- name: ensure /var/rundeck cirectory exists
   file:
     path: /var/rundeck
     state: directory
